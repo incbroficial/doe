@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doações - Igreja Nazareno</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <div class="max-w-md mx-auto my-10 p-6 bg-white rounded-xl shadow-lg border-t-8 border-blue-700">
+        
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-gray-800">Contribuições e Ofertas</h1>
+            <p class="text-gray-500 mt-2">Sua generosidade faz a diferença na obra de Deus.</p>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-lg mb-6 border border-blue-100">
+            <h2 class="text-lg font-semibold text-blue-800 mb-4 flex items-center">
+                <i class="fa-brands fa-pix mr-2"></i> Doação via PIX
+            </h2>
+            
+            <div class="flex justify-center mb-4">
+                <img id="qrcode" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=COLE_AQUI_SEU_CODIGO_PIX" alt="QR Code PIX" class="border-4 border-white shadow-sm">
+            </div>
+
+            <p class="text-sm text-center text-gray-600 mb-4">Aponte a câmera do celular ou copie o código abaixo:</p>
+            
+            <button onclick="copyPix()" id="btnCopy" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg transition-all flex items-center justify-center gap-2">
+                <i class="fa-regular fa-copy"></i> Copiar Código PIX
+            </button>
+            
+            <input type="text" value="COLE_AQUI_SEU_CODIGO_PIX" id="pixCode" class="sr-only">
+        </div>
+
+        <div class="space-y-4">
+            <h2 class="text-lg font-semibold text-gray-800 flex items-center">
+                <i class="fa-solid fa-building-columns mr-2"></i> Transferência Bancária
+            </h2>
+            
+            <div class="p-4 border border-gray-200 rounded-lg">
+                <p class="text-xs text-gray-400 uppercase font-bold">Banco</p>
+                <p class="text-gray-700 font-medium">Nome do Banco S.A.</p>
+                
+                <div class="grid grid-cols-2 mt-3">
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase font-bold">Agência</p>
+                        <p class="text-gray-700 font-medium">0001</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-400 uppercase font-bold">Conta Corrente</p>
+                        <p class="text-gray-700 font-medium">123456-7</p>
+                    </div>
+                </div>
+                
+                <p class="text-xs text-gray-400 uppercase font-bold mt-3">CNPJ / Beneficiário</p>
+                <p class="text-gray-700 font-medium">00.000.000/0001-00</p>
+                <p class="text-sm text-gray-600">Igreja Nazareno - Distrito X</p>
+            </div>
+        </div>
+
+        <footer class="mt-8 text-center text-gray-400 text-xs italic">
+            "Cada um dê conforme determinou em seu coração..." - 2 Coríntios 9:7
+        </footer>
+    </div>
+
+    <script>
+        function copyPix() {
+            const copyText = document.getElementById("pixCode");
+            const btn = document.getElementById("btnCopy");
+            
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> Código Copiado!';
+                btn.classList.remove('bg-blue-700');
+                btn.classList.add('bg-green-600');
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copiar Código PIX';
+                    btn.classList.remove('bg-green-600');
+                    btn.classList.add('bg-blue-700');
+                }, 3000);
+            });
+        }
+    </script>
+</body>
+</html>
